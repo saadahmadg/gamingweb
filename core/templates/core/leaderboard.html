@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static "img/favicon.png"%}">
+		
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static "css/font-awesome.min.css"%}">
+    <!-- Elegant Font Icons CSS -->
+    <link rel="stylesheet" href="{% static "css/elegant-font-icons.css"%}">
+    <!-- Elegant Line Icons CSS -->
+    <link rel="stylesheet" href="{% static "css/elegant-line-icons.css"%}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="{% static "css/animate.min.css"%}">
+    <!-- Venobox CSS -->
+    <link rel="stylesheet" href="{% static "css/venobox.css"%}">
+    <!-- OWL-Carousel CSS -->
+    <link rel="stylesheet" href="{% static "css/owl.carousel.css"%}">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static "css/main.css"%}">
+    <!-- <link rel="stylesheet" href="css/color.css"> -->
+    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static "css/responsive.css"%}">
+
+    <script src="{% static "js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"%}"></script>
+<style>
+    * {font-family: Helvetica Neue, Arial, sans-serif; }
+
+body { background-color:#f98f1c}
+h2{
+    color:white;
+}
+
+h2, table { text-align: center;
+    margin-top: 100px; }
+
+table {border-collapse: collapse;  width: 70%; margin: 0 auto 5rem;}
+
+th, td { padding: 1.5rem; font-size: 2.3rem; text-align:center; }
+th.thicker {
+    font-weight: 200px;;
+  }
+  
+
+tr {background: hsl(50, 50%, 80%); }
+
+tr, td { transition: .4s ease-in; } 
+
+tr:first-child {background: hsla(12, 100%, 40%, 0.5); }
+
+tr:nth-child(even) { background: hsla(50, 50%, 80%, 0.7); }
+
+td:empty {background: hsla(50, 25%, 60%, 0.7); }
+
+tr:hover:not(#firstrow), tr:hover td:empty {background: #f98f1c; pointer-events: visible;}
+tr:hover:not(#firstrow) { transform: scale(1.2); font-weight: 700; box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.5);}
+
+
+
+</style>
+</head>
+<body>
+    <div id='preloader' >
+        <div class='loader' >
+            <img src="{% static "img/preloader.svg"%}" width="60" alt="">
+        </div>
+    </div><!-- Preloader -->
+    
+    <header id="header" class="header_section">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="nav-btn navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="brand logo-dark"><img src="{% static "img/logo.png"%}" alt="Aperture"></a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav nav-menu">
+                        <li class="active"><a data-scroll href="{%url 'index'%}">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a data-scroll href="{%url 'games'%}">Games</a></li>
+                        <li><a data-scroll href="{%url 'leaderboard'%}">LeaderBoard</a></li>
+                        <li><a data-scroll href="#pricing">AboutUs</a></li>
+                        
+                    </ul>
+                </div><!--/.navbar-collapse -->
+            </div>
+        </nav><!-- Navigation Bar -->
+    </header> <!-- Header -->
+    <h2>LeaderBoard</h2>
+
+    <table id="racetimes">
+    <tr id="firstrow"><th>ID</th><th>Username</th><th>Email</th><th>Points Scored</th></tr>
+    
+    {% for f in fm %}
+    <tr>
+        <td>{{ f.id }}</td>
+        <td>{{ f.Username }}</td>
+        <td>{{ f.Email }}</td>
+        <td>{{ f.Points_Scored }}</td>
+    </tr>
+  {% endfor %}
+    </table>
+
+
+    <a data-scroll href="#header" id="scroll-to-top"><i class="arrow_carrot-up"></i></a>
+
+    <!-- jQuery Lib -->
+    <script src="{% static "js/vendor/jquery-1.12.4.min.js"%}"></script>
+    <!-- waypoints js -->
+    <script src="{% static "js/vendor/waypoints.min.js"%}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{% static "js/vendor/bootstrap.min.js"%}"></script>
+    <!-- OWL-Carousel JS -->
+    <script src="{% static "js/vendor/owl.carousel.min.js"%}"></script>
+    <!-- Smooth Scroll JS -->
+    <script src="{% static "js/vendor/smooth-scroll.min.js"%}"></script>
+    <!-- venobox JS -->
+    <script src="{% static "js/vendor/venobox.min.js"%}"></script>
+    <!-- Counterup JS -->
+    <script src="{% static "js/vendor/jquery.counterup.min.js"%}"></script>
+    <!-- Ajaxchimp JS -->
+    <script src="{% static "js/vendor/jquery.ajaxchimp.min.js"%}"></script>
+    <!-- TweenLite JS -->
+    <script src="{% static "js/vendor/TweenLite.min.js"%}"></script>
+    <!-- bubble-app JS -->
+    <script src="{% static "js/vendor/bubble-app.js"%}"></script>
+    <!-- wow JS -->
+    <script src="{% static "js/vendor/wow.min.js"%}"></script>
+    <!-- Main JS -->
+    <script src="{% static "js/main.js"%}"></script>
+
+</body>
+
+</html>

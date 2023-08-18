@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+    <head>
+        <title>HTML5 Tetris</title>
+        <link rel='stylesheet' href="{% static "css/what.css"%}" />
+    </head>
+    <body>
+        <audio id="clearsound" src="sound/pop.ogg" preload="auto"></audio>
+        <canvas width='300' height='600'></canvas>
+        <button id="playbutton" onclick="playButtonClicked();">Play</button>
+        <script src="{% static "canvas/tetris.js"%}"></script>
+        <script src="{% static "canvas/controller.js"%}"></script>
+        <script src="{% static "canvas/render.js"%}"></script>
+    </body>
+</html>

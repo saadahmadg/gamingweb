@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{% static "img/favicon.png"%}">
+		
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static "css/font-awesome.min.css"%}">
+    <!-- Elegant Font Icons CSS -->
+    <link rel="stylesheet" href="{% static "css/elegant-font-icons.css"%}">
+    <!-- Elegant Line Icons CSS -->
+    <link rel="stylesheet" href="{% static "css/elegant-line-icons.css"%}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="{% static "css/animate.min.css"%}">
+    <!-- Venobox CSS -->
+    <link rel="stylesheet" href="{% static "css/venobox.css"%}">
+    <!-- OWL-Carousel CSS -->
+    <link rel="stylesheet" href="{% static "css/owl.carousel.css"%}">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static "css/main.css"%}">
+    <!-- <link rel="stylesheet" href="css/color.css"> -->
+    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static "css/responsive.css"%}">
+
+    <script src="{% static "js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"%}"></script>
+
+<style>
+    body{
+        background-color: #f98f1c;
+    }
+
+    article {
+        margin-top: 25px;
+        --img-scale: 1.001;
+        --title-color: black;
+        --link-icon-translate: -20px;
+        --link-icon-opacity: 0;
+        position: relative;
+        border-radius: 16px;
+        box-shadow: none;
+        background: #fff;
+        transform-origin: center;
+        transition: all 0.4s ease-in-out;
+        overflow: hidden;
+
+      }
+      
+      article a::after {
+        position: absolute;
+        inset-block: 0;
+        inset-inline: 0;
+        cursor: pointer;
+        content: "";
+      }
+      
+      /* basic article elements styling */
+      article h2 {
+        margin: 0 0 18px 0;
+        font-family: "Bebas Neue", cursive;
+        font-size: 1.9rem;
+        letter-spacing: 0.06em;
+        color: var(--title-color);
+        transition: color 0.3s ease-out;
+      }
+      
+      figure {
+        margin: 0;
+        padding: 0;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+      }
+      
+      article img {
+        max-width: 100%;
+        transform-origin: center;
+        transform: scale(var(--img-scale));
+        transition: transform 0.4s ease-in-out;
+      }
+      
+      .article-body {
+        padding: 24px;
+      }
+      
+      article a {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: #28666e;
+      }
+      
+      article a:focus {
+        outline: 1px dotted #28666e;
+      }
+      
+      article a .icon {
+        min-width: 24px;
+        width: 24px;
+        height: 24px;
+        margin-left: 5px;
+        transform: translateX(var(--link-icon-translate));
+        opacity: var(--link-icon-opacity);
+        transition: all 0.3s;
+      }
+      
+      /* using the has() relational pseudo selector to update our custom properties */
+      article:has(:hover, :focus) {
+        --img-scale: 1.1;
+        --title-color: #28666e;
+        --link-icon-translate: 0;
+        --link-icon-opacity: 1;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+      }
+      
+      
+      /************************ 
+      Generic layout (demo looks)
+      **************************/
+      
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      
+      body {
+        margin: 0;
+        padding: 48px 0;
+        font-family: "Figtree", sans-serif;
+        font-size: 1.2rem;
+        line-height: 1.6rem;
+        background-image: linear-gradient(45deg, #7c9885, #b5b682);
+        min-height: 100vh;
+      }
+      
+      .articles {
+        display: grid;
+        max-width: 1200px;
+        margin-inline: auto;
+        padding-inline: 24px;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+
+      }
+      
+      @media screen and (max-width: 960px) {
+        article {
+          container: card/inline-size;
+
+        }
+        .article-body p {
+          display: none;
+        }
+      }
+      
+      @container card (min-width: 380px) {
+        .article-wrapper {
+          display: grid;
+          grid-template-columns: 100px 1fr;
+          gap: 16px;
+        }
+        .article-body {
+          padding-left: 0;
+        }
+        figure {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+        }
+        figure img {
+          height: 100%;
+          aspect-ratio: 1;
+          object-fit: cover;
+        }
+      }
+      
+      .sr-only:not(:focus):not(:active) {
+        clip: rect(0 0 0 0); 
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap; 
+        width: 1px;
+      }
+
+</style>
+
+
+
+</head>
+<body>
+    <div id='preloader' >
+        <div class='loader' >
+            <img src="{% static "img/preloader.svg"%}" width="60" alt="">
+        </div>
+    </div><!-- Preloader -->
+    
+    <header id="header" class="header_section">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="nav-btn navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="brand logo-dark"><img src="{% static "img/logo.png"%}" alt="Aperture"></a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav nav-menu">
+                        <li class="active"><a data-scroll href="{%url 'index'%}">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a data-scroll href="#features">Games</a></li>
+                        <li><a data-scroll href="{%url 'leaderboard'%}">LeaderBoard</a></li>
+                        <li><a data-scroll href="#pricing">AboutUs</a></li>
+                        
+                    </ul>
+                </div><!--/.navbar-collapse -->
+            </div>
+        </nav><!-- Navigation Bar -->
+    </header> <!-- Header -->
+  <!-- Card deck -->
+  <section class="articles">
+    <article>
+      <div class="article-wrapper">
+        <figure>
+          <img src="https://picsum.photos/id/1011/800/450" alt="" />
+        </figure>
+        <div class="article-body">
+          <h2>This is some title</h2>
+          <p>
+            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
+          </p>
+          <a href="{%url 'astray'%}" class="read-more">
+            Play here! <span class="sr-only">about this is some title</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+    <article>
+  
+      <div class="article-wrapper">
+        <figure>
+          <img src="https://picsum.photos/id/1005/800/450" alt="" />
+        </figure>
+        <div class="article-body">
+          <h2>This is some title</h2>
+          <p>
+            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
+          </p>
+          <a href="{%url 'canvas'%}" class="read-more">
+          Play here!<span class="sr-only">about this is some title</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+    <article>
+  
+      <div class="article-wrapper">
+        <figure>
+          <img src="https://picsum.photos/id/103/800/450" alt="" />
+        </figure>
+        <div class="article-body">
+          <h2>This is some title</h2>
+          <p>
+            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
+          </p>
+          <a href="{%url 'master'%}" class="read-more">
+            Play here! <span class="sr-only">about this is some title</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+    <article>
+  
+      <div class="article-wrapper">
+        <figure>
+          <img src="https://picsum.photos/id/103/800/450" alt="" />
+        </figure>
+        <div class="article-body">
+          <h2>This is some title</h2>
+          <p>
+            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
+          </p>
+          <a href="{%url 'master2048'%}" class="read-more">
+            Play here! <span class="sr-only">about this is some title</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+    <article>
+  
+      <div class="article-wrapper">
+        <figure>
+          <img src="{%static "img/img1.png"%}" alt="" />
+        </figure>
+        <div class="article-body">
+          <h2>This is some title</h2>
+          <p>
+            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
+          </p>
+          <a href="{%url 'hextrix'%}" class="read-more">
+            Play here! <span class="sr-only">about this is some title</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+
+  </section>
+
+
+    <a data-scroll href="#header" id="scroll-to-top"><i class="arrow_carrot-up"></i></a>
+
+    <!-- jQuery Lib -->
+    <script src="{% static "js/vendor/jquery-1.12.4.min.js"%}"></script>
+    <!-- waypoints js -->
+    <script src="{% static "js/vendor/waypoints.min.js"%}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{% static "js/vendor/bootstrap.min.js"%}"></script>
+    <!-- OWL-Carousel JS -->
+    <script src="{% static "js/vendor/owl.carousel.min.js"%}"></script>
+    <!-- Smooth Scroll JS -->
+    <script src="{% static "js/vendor/smooth-scroll.min.js"%}"></script>
+    <!-- venobox JS -->
+    <script src="{% static "js/vendor/venobox.min.js"%}"></script>
+    <!-- Counterup JS -->
+    <script src="{% static "js/vendor/jquery.counterup.min.js"%}"></script>
+    <!-- Ajaxchimp JS -->
+    <script src="{% static "js/vendor/jquery.ajaxchimp.min.js"%}"></script>
+    <!-- TweenLite JS -->
+    <script src="{% static "js/vendor/TweenLite.min.js"%}"></script>
+    <!-- bubble-app JS -->
+    <script src="{% static "js/vendor/bubble-app.js"%}"></script>
+    <!-- wow JS -->
+    <script src="{% static "js/vendor/wow.min.js"%}"></script>
+    <!-- Main JS -->
+    <script src="{% static "js/main.js"%}"></script>
+
+</body>
+
+</html>
