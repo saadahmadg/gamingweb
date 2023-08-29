@@ -34,6 +34,13 @@ urlpatterns = [
     path('canvas/',views.canvas,name='canvas'),
     path('racing/',views.racing,name='racing'),
     path('racing/v1.straight.html/',views.straight,name='straight'),
+    path('snake/',views.snake,name='snake'),
+    path('monster/',views.monster,name='monster'),
+    path('lastwar/',views.lastwar,name='lastwar'),
+    path('goker/',views.goker,name='goker'),
+    path('tabletennis/',views.tabletennis,name='tabletennis'),
+    path('mysnake/',views.mysnake,name='mysnake'),
+    path('block/',views.block,name='block')
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

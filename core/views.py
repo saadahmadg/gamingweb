@@ -38,3 +38,26 @@ def racing(request):
 
 def straight(request):
     return render(request,'core/v1.straight.html')
+
+def snake(request):
+    return render(request,'core/snakegame.html')
+
+def monster(request):
+    return render(request,'core/monster.html')
+
+def lastwar(request):
+    return render(request,'core/lastwar.html')
+
+def goker(request):
+    return render(request,'core/goker.html')
+
+
+def tabletennis(request):
+    return render(request,'core/tabletennis.html')
+
+
+def mysnake(request):
+    return render(request,'core/mysnake.html')
+
+def block(request):
+    return render(request,'core/block.html')

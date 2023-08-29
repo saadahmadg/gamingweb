@@ -1,0 +1,15 @@
+<!doctype html>
+{%load static%}
+<html>
+	<head>
+		<title>Game</title>
+		<link rel="{% static "monstercss/stylesheet"%}" type="text/css" href="style.css">
+	</head>
+	<body>
+		<canvas id="canvasBg" width="800" height="600"></canvas>
+		<div id="overlapping">
+			<canvas id="canvasEntities" width="800" height="600"></canvas>
+		</div>
+
+		<script src="{% static "monsterjs/game.js"%}"></script>
+	</body> 

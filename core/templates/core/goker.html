@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            -moz-box-sizing: border-box; /* ff2 */
+            -ms-box-sizing: border-box; /* ie8 */
+            -webkit-box-sizing: border-box; /* safari3 */
+            -khtml-box-sizing: border-box; /* konqueror */
+            box-sizing: border-box; /* css3 rec */
+            -webkit-border-radius:0px;
+            border-radius:2px;
+            -webkit-appearance: none;
+            outline: none;
+        }
+        a { cursor: pointer; }
+        body {
+            margin:0;
+            padding:0;
+            font: 11px/40px "Helvetica Neue", Helvetica, sans-serif;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-touch-callout: none;
+            color: #222;
+        }
+        .clearfix {
+            clear: both;
+        }
+        #container {
+            position: relative;
+            margin: 0 auto;
+            width: 320px;
+        }
+        #container .step {
+            float: left;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #fff;
+            background-color: #ddb;
+            background-size:100% 100%;
+            background-repeat:no-repeat;
+            font-weight: bold;
+            text-align: center;
+        }
+        #container .shit.checked {
+            background-image: url('http://fakabastin.gokercebeci.com//images/shit.png');
+        
+        }
+        #container .clear.checked {
+            background-color: #ddb;
+            background-image: url('http://fakabastin.gokercebeci.com//images/step.png');
+        }
+        #container .hint.checked {
+            color: #fff;
+            font-size: 13px;
+            background-color: #444;
+            background-image: url('http://fakabastin.gokercebeci.com//images/step.png');
+        }
+        #container .flag {
+            background-image: url('http://fakabastin.gokercebeci.com//images/flag.png');
+        }
+        #info, #level {
+            padding: 0 10px;
+            height: 40px;
+          cursor: pointer;
+        }
+        #switcher {
+            float:right;
+            margin-right: -5px;
+            height: 40px;
+        }
+        #info a {
+            display: inline-block;
+            margin: 2px 0 0 2px;
+            width: 36px;
+            height: 36px;
+            background-color: #eec;
+            background-size:100% 100%;
+            background-repeat:no-repeat;
+            background-image: url('http://fakabastin.gokercebeci.com//images/step.png');
+        }
+        #info a.selected {
+            background-color: #cca;
+        }
+        #info #flagging {
+            background-image: url('http://fakabastin.gokercebeci.com//images/flag.png');
+        }
+        #level {
+            position: relative;
+            border-bottom: 1px solid #666;
+            text-align: center;
+            font-weight: bold;
+        }
+        #counter {
+            position: absolute;
+            right: 5px;
+            text-align:right;
+        }
+        #switch {
+            float:right;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        #layer, #gameover {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            width: 320px;
+            min-height: 400px;
+            background: #000;
+            opacity: .88;
+            z-index: 1000;
+        }
+        #gameover {
+            background-color: #000;
+            background-size:50% 50%;
+            background-repeat:no-repeat;
+            background-position: center 80px;
+            background-image: url('http://fakabastin.gokercebeci.com//images/shit.png');
+        }
+        #gameover div {
+            padding: 20px 0;
+            color: #fff;
+            font-size: 30px;
+            text-align: center;
+        }
+        #layer.show, #gameover.show {
+            display: block;
+        }
+        #layer b{
+            display: block;
+            color: #fff;
+        }
+        #continue, .level, #tryagain {
+            display: block;
+            background: #eee;
+            text-align: center;
+        }
+        #easy, #hard {
+            display: inline-block;
+            background: #eee;
+            text-align: center;
+            margin: 0 2%;
+            width: 46%;
+        }
+        .level {
+            margin: 2px 0;
+            padding: 0 10px;
+        }
+        .level.done {
+            text-align: left;
+        }
+        .level.current, #easy.selected, #hard.selected {
+            color: #fff;
+            font-weight: bold;
+            background: #911;
+        }
+        .level.disable {
+            background: #bbb;
+        }
+        .submenu {
+          margin: 5px auto;
+          width: 320px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="container">
+        <div id="level">
+            LEVEL <b>1</b><i id="counter"></i>
+        </div>
+        <div class="clearfix"></div>
+        <div id="info">
+            STEP: <b id="step"></b> 
+            SHIT: <b id="shit"></b> 
+            FLAG: <b id="flag"></b> 
+            CHECKED: <b id="checked"></b> 
+            <div id="switcher">
+                <a id="flagging"></a>
+                <a id="stepping" class="selected"></a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="layer">
+            <a id="continue">CONTINUE</a>
+            <b>MODE</b>
+            <a id="easy">EASY</a><a id="hard">HARD</a>
+            <b>LEVELS</b>
+            <div id="levels"></div>
+        </div>
+        <div id="gameover">
+            <a id="tryagain">TRY AGAIN</a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+<div class="submenu">
+* click to "LEVEL X" for changing LEVEL! <br/>
+    <a href="https://codepen.io/goker/full/AEwhD">new</a>
+    <a id="switch">show</a>
+</div>
+    <script>
+        // defines
+var game,
+mode = 'easy',
+//level = 1,
+time = 0,
+timer,
+width = 8, height = 8,
+step = width * height,
+shit = 7,
+flag,
+shits,
+checked,
+shitted,
+field,
+_function,
+arround = [[-1,-1],[0,-1],[1,-1],[-1,0],[1,0],[-1,1],[0,1],[1,1]];
+            
+// INIT
+var init = function(){
+    clearInterval(timer); timer = null; $('#counter').html('');
+    $('#layer, #gameover').removeClass('show');
+    game = JSON.parse(localStorage.getItem('game'));
+                
+    if( !game || (game && game.version != '1.00') ){
+        game = {
+            'version':'1.00',
+            'mode':'easy',
+            'level':1,
+            'levels':{
+                1:{
+                    'status':'current',
+                    'time':0,
+                    'date':0
+                },
+                2:{
+                    'status':'disable',
+                    'time':0,
+                    'date':0
+                },
+                3:{
+                    'status':'disable',
+                    'time':0,
+                    'date':0
+                },
+                4:{
+                    'status':'disable',
+                    'time':0,
+                    'date':0
+                },
+                5:{
+                    'status':'disable',
+                    'time':0,
+                    'date':0
+                },
+                6:{
+                    'status':'disable',
+                    'time':0,
+                    'date':0
+                },
+                7:{
+                    'status':'disable',
+                    'time':0,
+                    'date':0
+                },
+                8:{
+                    'status':'disable',
+                    'time':0,
+                    'date':0
+                },
+                9:{
+                    'status':'disable',
+                    'time':0,
+                    'date':0
+                },
+                10:{
+                    'status':'disable',
+                    'time':0,
+                    'date':0
+                }
+            }
+        };
+        localStorage.removeItem('game');
+        localStorage.setItem('game',JSON.stringify(game));
+    }
+                
+    mode = game.mode || mode;
+    //game.level = game.level || 1;
+    $('#level b').html(game.level);
+    time = 0;
+    shit = 7 + game.level * 1;
+    flag = shit;
+    checked = 0;
+    shitted = 0;
+    shits = [];
+    if(shits > step) shits = step - 1;
+    while(true){
+        var i = Math.floor(Math.random() * step);
+        if(shits.indexOf(i) == -1){ 
+            shits.push(i); 
+        }
+        if(shits.length == shit){
+            break;
+        }
+    }
+    shits = shits.sort(function(a,b){
+        return a-b
+    });
+    _function = 'stepping';
+    field = [];
+                
+                
+    // cleaning
+    $('.step').remove();
+    // shitting
+    var stepping = 0, shitting = 0;
+    for(var y = 0; y < height; y++){
+        field[y] = [];
+        for(var x = 0; x < width; x++){
+            if(shitting < shit && shits[shitting] == stepping){
+                shitting++;
+                field[y][x] = 'shit';
+            } else field[y][x] = 'clear'
+            stepping++;
+        }
+    };
+    flag = shit = shits.length;
+    // hinting
+    for(var y = 0; y < height; y++){
+        for(var x = 0; x < width; x++){
+            var content = '';
+            if(field[y][x] == 'shit'){
+            } else {
+                var hint = 0;
+                var i = 8;
+                while(i--){
+                    var Y = (y + arround[i][0]);
+                    var X = (x + arround[i][1]); 
+                    var condition = (X >= 0 && X < width && Y >= 0 && Y < height);
+                    if(condition && field[Y][X] == 'shit'){
+                        hint++;
+                    }
+                }
+                if(hint){
+                    content = hint;
+                    field[y][x] = 'hint';
+                }
+            }
+            $('<div>',{
+                'class':'step X'+x+' Y'+y+' '+field[y][x]
+            })
+            .data({
+                'y':y,
+                'x':x,
+                'content' : content ? content : field[y][x]
+            })
+            //.html(content)
+            .click(function(){
+                check($(this))
+            })
+            .appendTo('#container');
+        }
+    }
+    // settings
+    $('#levels').empty();
+    $('#'+game.mode).addClass('selected');
+    for(var level in game.levels){
+        var l = game.levels[level];
+        $('<a>',{
+            'class':'level '+l.status
+        })
+        .data({
+            'level':level,
+            'status':l.status
+        })
+        .html('LEVEL '+level+(l.time?'<i>'+l.time+'</i>':''))
+        .click(function(){ 
+            //console.log($(this).data('level'));
+            if($(this).data('status') != 'current'){
+                var s = game.levels[game.level].status;
+                game.levels[game.level].status = s == 'done' ? 'done' : '';
+                game.level = $(this).data('level');
+                //game.level = level;
+                localStorage.setItem('game',JSON.stringify(game));
+                init();
+                info();
+            }
+        })
+        .appendTo('#levels');
+    }
+};
+init();
+//functions
+var check = function(el){
+    if(!time)
+        timer = setInterval(function(){
+            counter()
+        },1000);
+    if(_function == 'stepping'){
+        if(el.hasClass('flag')){
+            flag++;
+            el.removeClass('flag'); 
+        }
+        var c = el.data('content');
+        if(c == 'clear'){
+            explode(el.data('x'),el.data('y'));
+        } else if(c == 'shit'){
+            shitted++;
+        } else {
+            el.html(c);
+        }
+        el.addClass('checked cleared'); 
+    } else {
+        if(el.hasClass('flag')){
+            flag++;
+            el.removeClass('flag'); 
+        } else if(flag > 0){
+            flag--;
+            el.addClass('flag');
+        }
+        
+    }
+    info();
+};
+var explode = function(x,y){
+    var i = 8;
+    while(i--){
+        var Y = (y + arround[i][0]);
+        var X = (x + arround[i][1]); 
+        var condition = (X >= 0 && X < width && Y >= 0 && Y < height);
+        if(condition && field[Y][X] == 'clear'){
+            field[Y][X] = 'cleared';
+            $('.X'+X+'.Y'+Y).addClass('checked cleared');
+            if( $('.X'+X+'.Y'+Y).hasClass('flag')){
+                flag++;
+                $('.X'+X+'.Y'+Y).removeClass('flag'); 
+            }
+            explode(X,Y);
+        } else if(condition){
+            var c = $('.X'+X+'.Y'+Y).data('content');
+            $('.X'+X+'.Y'+Y)
+            .html(c != 'clear' ? c : '')
+            .addClass('checked cleared');
+        }
+    }
+    info();
+};
+var info = function(){
+    checked = $('#container .checked.cleared').length;
+    if(shitted >= 3){
+        clearInterval(timer);
+        timer = null;
+        //alert('game over');
+        $('#gameover').addClass('show')
+        .append($('<div>').html('GAME OVER<p>SCORE: <b>'+((time / level)>>0)+'</b></p>'));
+    } else if(step == (checked + shit - flag)){
+        clearInterval(timer);
+        timer = null;
+        /*db.transaction(function (tx) {
+                        tx.executeSql('INSERT INTO `level` (`level`,`time`,`date`) VALUES (?,?,NOW())'
+                            +' ON DUPLICATE KEY UPDATE '
+                            +' `level` = ?, `time` = ?, `date` = NOW()', [level, time, level, time]);
+                        
+                        tx.executeSql('UPDATE game SET `level` = ?, `mode` = ?', [level, mode]);
+                    });*/
+        game.levels[game.level] = {
+            'status':'done',
+            'time':time
+        };
+        game.level++;
+        //game.level = level;
+        game.levels[game.level] = {
+            'status':'current',
+            'time':0
+        };
+        localStorage.setItem('game',JSON.stringify(game));
+        alert("done\n your time: "+time+'sn');
+        init();
+    }                    
+    $('#step').html(step);
+    $('#shit').html(shit);
+    $('#flag').html(flag);
+    $('#checked').html(checked);
+};
+info();
+function counter(){
+    $('#counter').html((++time)+'sn');
+}
+// events
+$('#flagging').click(function(){
+    _function = 'flagging';
+    $('#flagging').addClass('selected');
+    $('#stepping').removeClass('selected');
+});
+$('#stepping').click(function(){
+    _function = 'stepping';
+    $('#stepping').addClass('selected');
+    $('#flagging').removeClass('selected');
+});
+$('#level').click(function(){
+    $('#layer').toggleClass('show');
+});
+$('#continue').click(function(){
+    $('#layer').toggleClass('show');
+});
+$('#easy').click(function(){
+    $('#hard').removeClass('selected');
+    $(this).addClass('selected');
+    mode = 'easy';
+    game.mode = mode;
+    localStorage.setItem('game',JSON.stringify(game));
+    init();
+});
+$('#hard').click(function(){
+    $('#easy').removeClass('selected');
+    $(this).addClass('selected');
+    mode = 'hard';
+    game.mode = mode;
+    localStorage.setItem('game',JSON.stringify(game));
+    init();
+});
+$('#tryagain').click(function(){
+    init();
+});
+$('#switch').click(function(){
+    if($(this).html() == 'show'){
+        $(this).html('hide');
+        $('.step:not(.cleared)').addClass('checked');  
+    } else {
+        $(this).html('show');
+        $('.step:not(.cleared)').removeClass('checked');  
+    }
+});
+    </script>
+</body>
+</html>
